@@ -1,0 +1,12 @@
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\MTGPriceCheckerSpike.exe.config
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.csprojResolveAssemblyReference.cache
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.Form1.resources
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.Properties.Resources.resources
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.csproj.GenerateResource.Cache
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\MTGPriceCheckerSpike.exe
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\MTGPriceCheckerSpike.pdb
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\HtmlAgilityPack.dll
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\HtmlAgilityPack.pdb
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\HtmlAgilityPack.xml
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.exe
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.pdb

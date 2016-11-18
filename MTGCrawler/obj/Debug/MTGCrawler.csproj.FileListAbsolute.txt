@@ -1,0 +1,10 @@
+C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\MTGCrawler.pdb
+C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.Properties.Resources.resources
+C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.csproj.GenerateResource.Cache
+C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.pdb
+C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\MTGCrawler.dll.config
+C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\MTGCrawler.dll
+C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.dll
+C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.pdb
+C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.xml
+C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.dll
