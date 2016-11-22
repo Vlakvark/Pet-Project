@@ -8,3 +8,4 @@ C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.dll
 C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.pdb
 C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.xml
 C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.dll
+C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.csprojResolveAssemblyReference.cache

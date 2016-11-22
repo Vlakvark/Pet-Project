@@ -10,3 +10,5 @@ C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\HtmlAgilityPack.pdb
 C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\HtmlAgilityPack.xml
 C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.exe
 C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\obj\Debug\MTGPriceCheckerSpike.pdb
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\MTGCrawler.dll
+C:\Repo\MTGPriceChecker\MTGPriceCheckerSpike\bin\Debug\MTGCrawler.pdb
