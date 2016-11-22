@@ -9,6 +9,10 @@ namespace MTGCrawler
 {
     public interface IMTGCrawler
     {
+        IList<Card> FetchAll(string name);
+
+        Card FetchDeckAndDice(string name);
+
         Card FetchDracoti(string name);
 
         Card FetchLuckShack(string name);

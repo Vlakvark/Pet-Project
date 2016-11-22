@@ -1,9 +1,9 @@
 ﻿using MTGCrawler.Model;
+using MTGCrawler.Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -13,13 +13,73 @@ namespace MTGCrawler
     {
         private const string _regEx = "[^a-zA-Z0-9 -]";
 
+        public IList<Card> FetchAll(string name)
+        {
+            var suppliers = EnumToList<Supplier>();
+
+            var supplierResults = new List<Card>();
+
+            Parallel.ForEach(suppliers, supplier =>
+            {
+                switch (supplier)
+                {
+                    case Supplier.DeckAndDice:
+                        supplierResults.Add(FetchDeckAndDice(name));
+                        break;
+
+                    case Supplier.Dracoti:
+                        supplierResults.Add(FetchDracoti(name));
+                        break;
+
+                    case Supplier.LuckShack:
+                        supplierResults.Add(FetchLuckShack(name));
+                        break;
+
+                    case Supplier.TopDeck:
+                        supplierResults.Add(FetchTopDeck(name));
+                        break;
+
+                    case Supplier.UnderworldConnections:
+                        supplierResults.Add(FetchUnderworldConnections(name));
+                        break;
+
+                    case Supplier.SadRobot:
+                        supplierResults.Add(FetchSadRobot(name));
+                        break;
+
+                    case Supplier.Scry:
+                        supplierResults.Add(FetchScry(name));
+                        break;
+
+                    default:
+                        break;
+                }
+            });
+
+            return supplierResults;
+        }
+
+        public Card FetchDeckAndDice(string name)
+        {
+            var card = new Card()
+            {
+                CardName = name,
+                Stock = 0,
+                Price = 0,
+                Supplier = Supplier.DeckAndDice
+            };
+
+            return card;
+        }
+
         public Card FetchDracoti(string name)
         {
             var card = new Card()
             {
                 CardName = name,
                 Stock = 0,
-                Price = 0
+                Price = 0,
+                Supplier = Supplier.Dracoti
             };
 
             using (var client = new WebClient())
@@ -58,7 +118,8 @@ namespace MTGCrawler
             {
                 CardName = name,
                 Stock = 0,
-                Price = 0
+                Price = 0,
+                Supplier = Supplier.LuckShack
             };
 
             using (var client = new WebClient())
@@ -94,7 +155,10 @@ namespace MTGCrawler
         {
             var card = new Card()
             {
-                CardName = name
+                Stock = 0,
+                Price = 0,
+                CardName = name,
+                Supplier = Supplier.SadRobot
             };
 
             using (var client = new WebClient())
@@ -131,7 +195,8 @@ namespace MTGCrawler
             {
                 CardName = name,
                 Stock = 0,
-                Price = 0
+                Price = 0,
+                Supplier = Supplier.Scry
             };
 
             using (var client = new WebClient())
@@ -166,7 +231,10 @@ namespace MTGCrawler
         {
             var card = new Card()
             {
-                CardName = name
+                Stock = 0,
+                Price = 0,
+                CardName = name,
+                Supplier = Supplier.TopDeck
             };
             using (var client = new WebClient())
             {
@@ -200,7 +268,10 @@ namespace MTGCrawler
         {
             var card = new Card()
             {
-                CardName = name
+                Stock = 0,
+                Price = 0,
+                CardName = name,
+                Supplier = Supplier.UnderworldConnections
             };
 
             using (var client = new WebClient())
@@ -230,6 +301,12 @@ namespace MTGCrawler
                 }
                 return card;
             }
+        }
+
+        private IList<T> EnumToList<T>()
+        {
+            var types = Enum.GetValues(typeof(T)).Cast<T>().ToList();
+            return types;
         }
     }
 }

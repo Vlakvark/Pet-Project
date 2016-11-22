@@ -55,6 +55,7 @@
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="IMTGCrawler.cs" />
     <Compile Include="Model\Card.cs" />
+    <Compile Include="Model\Enum\Supplier.cs" />
     <Compile Include="MTGCrawler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -78,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repository\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

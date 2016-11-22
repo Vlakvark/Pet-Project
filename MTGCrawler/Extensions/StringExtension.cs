@@ -19,6 +19,7 @@ namespace MTGCrawler
             var rgx = new Regex(_regEx);
             decimal price = 0;
             var str = Regex.Replace(value, _regEx, "");
+            str = str.Replace("...", "");
             Decimal.TryParse(str, style, culture, out price);
 
             return price;

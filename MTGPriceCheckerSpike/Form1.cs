@@ -82,6 +82,10 @@ namespace MTGPriceCheckerSpike
 
         private void button8_Click(object sender, EventArgs e)
         {
+            MTGCrawler.MTGCrawler cr = new MTGCrawler.MTGCrawler();
+            var card = cr.FetchAll(textBox1.Text);
+
+            dataGridView1.DataSource = card;
         }
 
         private void button9_Click(object sender, EventArgs e)
