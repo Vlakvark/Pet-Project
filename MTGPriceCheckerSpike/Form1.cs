@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using MTGCrawler.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,47 @@ namespace MTGPriceCheckerSpike
             var card = cr.FetchDracoti(textBox1.Text);
             lstCardResults.Items.Add("Price : " + card.Price.ToString());
             lstCardResults.Items.Add("Availability : " + card.Stock.ToString());
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            List<string> list = Properties.Settings.Default["WatchList"] as List<string>;
+            if (list == null)
+                list = new List<string>();
+
+            list.Add(textBox1.Text);
+            Properties.Settings.Default["WatchList"] = list;
+            Properties.Settings.Default.Save(); // Saves settings in application configuration file
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            //var list = new List<string>();
+            List<string> list = Properties.Settings.Default["WatchList"] as List<string>;
+            if (list == null)
+                list = new List<string>();
+
+            list.Remove(textBox1.Text);
+            Properties.Settings.Default["WatchList"] = list;
+            Properties.Settings.Default.Save(); // Saves settings in application configuration file
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            //var list = new List<string>();
+            List<string> list = Properties.Settings.Default["WatchList"] as List<string>;
+            if (list == null)
+                list = new List<string>();
+
+            var cards = new List<Card>();
+            foreach (var item in list)
+            {
+                MTGCrawler.MTGCrawler cr = new MTGCrawler.MTGCrawler();
+                var card = cr.FetchAll(item);
+                cards.AddRange(card);
+            }
+
+            dataGridView1.DataSource = cards;
         }
 
         private void button2_Click(object sender, EventArgs e)
