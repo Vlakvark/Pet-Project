@@ -9,3 +9,14 @@ C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.pdb
 C:\Repo\MTGPriceChecker\MTGCrawler\bin\Debug\HtmlAgilityPack.xml
 C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.dll
 C:\Repo\MTGPriceChecker\MTGCrawler\obj\Debug\MTGCrawler.csprojResolveAssemblyReference.cache
+C:\Sandbox\PetProject\MTGCrawler\bin\Debug\MTGCrawler.dll.config
+C:\Sandbox\PetProject\MTGCrawler\bin\Debug\MTGCrawler.dll
+C:\Sandbox\PetProject\MTGCrawler\bin\Debug\MTGCrawler.pdb
+C:\Sandbox\PetProject\MTGCrawler\bin\Debug\HtmlAgilityPack.dll
+C:\Sandbox\PetProject\MTGCrawler\bin\Debug\HtmlAgilityPack.pdb
+C:\Sandbox\PetProject\MTGCrawler\bin\Debug\HtmlAgilityPack.xml
+C:\Sandbox\PetProject\MTGCrawler\obj\Debug\MTGCrawler.csprojResolveAssemblyReference.cache
+C:\Sandbox\PetProject\MTGCrawler\obj\Debug\MTGCrawler.Properties.Resources.resources
+C:\Sandbox\PetProject\MTGCrawler\obj\Debug\MTGCrawler.csproj.GenerateResource.Cache
+C:\Sandbox\PetProject\MTGCrawler\obj\Debug\MTGCrawler.dll
+C:\Sandbox\PetProject\MTGCrawler\obj\Debug\MTGCrawler.pdb

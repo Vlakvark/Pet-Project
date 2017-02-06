@@ -9,5 +9,7 @@
         UnderworldConnections,
         SadRobot,
         Scry,
+        BattleWizards,
+        CardBox
     }
 }

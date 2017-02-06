@@ -51,6 +51,10 @@ namespace MTGCrawler
                         supplierResults.Add(FetchScry(name));
                         break;
 
+                    case Supplier.BattleWizards:
+                        supplierResults.Add(FetchBattleWizards(name));
+                        break;
+
                     default:
                         break;
                 }
@@ -68,6 +72,38 @@ namespace MTGCrawler
                 Price = 0,
                 Supplier = Supplier.DeckAndDice
             };
+
+            using (var client = new WebClient())
+            {
+                try
+                {
+                    var cardName = string.Format("\"{0}\"", name);
+                    // initial request to get search results
+                    var html = client.DownloadString(string.Format("https://app.ecwid.com/rpc/7080336/10?7080336||0.58501668835575|23.9-373-g5bf8e52!10bdf368*7|1|14|https://app.ecwid.com/|F61A1BD152F3F909A2F5B4B947BF5A00|_|searchProducts|1u|1m|java.util.Map|1l|java.util.List|Z|7o|I|{0}|2b|1|2|3|4|10|5|6|6|7|8|9|10|11|12|12|13|0|0|14|0|0|0|0|0|11|0|0|60|", cardName.Replace(" ", "%20")));
+                    //https://app.ecwid.com/rpc/7080336/5?7080336||0.5194191513943245|23.3-1664-g52d06e6!9f6c220d*7|1|14|https://app.ecwid.com/|F913A30B232D1B24A063AAA4BE361ADB|_|searchProducts|1t|1m|java.util.Map|1l|java.util.List|Z|7c|I|{0}|2a|1|2|3|4|10|5|6|6|7|8|9|10|11|12|12|13|0|0|14|0|0|0|0|0|11|0|0|10|
+                    //https://app.ecwid.com/rpc/7080336/10?7080336||0.58501668835575|23.9-373-g5bf8e52!10bdf368*7|1|14|https://app.ecwid.com/|F61A1BD152F3F909A2F5B4B947BF5A00|_|searchProducts|1u|1m|java.util.Map|1l|java.util.List|Z|7o|I|{0}|2b|1|2|3|4|10|5|6|6|7|8|9|10|11|12|12|13|0|0|14|0|0|0|0|0|11|0|0|60|
+                    // now we need to seacrh for pattern in this string
+                    if (html.ToLowerInvariant().Contains(name))
+                    {
+                        // they have the card, now find the details
+                        System.Text.RegularExpressions.Regex searchTerm = new System.Text.RegularExpressions.Regex(@",\d{1,4}.\d{1},1,\d{8}");
+                        var results = searchTerm.Matches(html);
+                        if (results.Count > 0)
+                        {
+                            var infos = results[results.Count - 1].Value.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                            var price = infos[0];
+                            //var html2 = client.DownloadString(string.Format("https://app.ecwid.com/rpc/7080336/3?7080336||0.9064937051798795|23.3-1664-g52d06e6!f3c49182*7|1|7|https://app.ecwid.com/|F913A30B232D1B24A063AAA4BE361ADB|_|getOriginalProduct|3x|I|Z|1|2|3|4|3|5|6|7|0|{0}|0|", useThis));
+
+                            card.Price = price.ToDecimal();
+                            card.Stock = 1;
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
 
             return card;
         }
@@ -111,6 +147,8 @@ namespace MTGCrawler
                 return card;
             }
         }
+
+        //http://www.battlewizards.co.za/search?q=fatal+push
 
         public Card FetchLuckShack(string name)
         {
@@ -301,6 +339,86 @@ namespace MTGCrawler
                 }
                 return card;
             }
+        }
+
+        public Card FetchBattleWizards(string name)
+        {
+            var card = new Card()
+            {
+                CardName = name,
+                Stock = 0,
+                Price = 0,
+                Supplier = Supplier.BattleWizards
+            };
+
+            using (var client = new WebClient())
+            {
+                var rgx = new Regex(_regEx);
+                try
+                {
+                    var html = client.DownloadString("http://www.battlewizards.co.za/search?q=" + name.Replace(' ', '+'));
+
+                    var doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.LoadHtml(html);
+
+                    var priceXPath = doc.DocumentNode.SelectNodes("/html/body/div[3]/main/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/p/span");
+                    var availabilityXPath = doc.DocumentNode.SelectNodes("/html/body/div[3]/main/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/p/strong");
+
+                    if (priceXPath != null && priceXPath.Count() > 0)
+                    {
+                        var price = priceXPath[0].InnerHtml.Replace("ZAR", "");
+                        var availability = availabilityXPath[0].InnerHtml;
+
+                        card.Price = price.ToDecimal();
+                        card.Stock = availability.ToInt();
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+
+                return card;
+            }
+        }
+
+        public Card FetchCardBox(string name)
+        {
+            var card = new Card()
+            {
+                CardName = name,
+                Stock = 0,
+                Price = 0,
+                Supplier = Supplier.CardBox
+            };
+
+            //using (var client = new WebClient())
+            //{
+            //    var rgx = new Regex(_regEx);
+            //    try
+            //    {
+            //        var html = client.DownloadString("http://www.cardbox.co.za/index.php?ajx=result_qfind&qfind=" + name);
+
+            //        var doc = new HtmlAgilityPack.HtmlDocument();
+            //        doc.LoadHtml(html);
+
+            //        var priceXPath = doc.DocumentNode.SelectNodes("/html/body/div[3]/main/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/p/span");
+            //        var availabilityXPath = doc.DocumentNode.SelectNodes("/html/body/div[3]/main/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/p/strong");
+
+            //        if (priceXPath != null && priceXPath.Count() > 0)
+            //        {
+            //            var price = priceXPath[0].InnerHtml.Replace("ZAR", "");
+            //            var availability = availabilityXPath[0].InnerHtml;
+
+            //            card.Price = price.ToDecimal();
+            //            card.Stock = availability.ToInt();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //    }                
+            //}
+
+            return card;
         }
 
         private IList<T> EnumToList<T>()
